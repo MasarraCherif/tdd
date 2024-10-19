@@ -39,22 +39,34 @@ export default function RootLayout({
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
-              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-                Accueil
+              <Link href="/" className="inline-block">
+                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
+                  Accueil
+                </Button>
               </Link>
-              <Link href="/jobs" className="text-sm font-medium hover:text-primary transition-colors">
-                Offres d'emploi
+              <Link href="/jobs" className="inline-block">
+                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
+                  Offres d'emploi
+                </Button>
               </Link>
-              <Link href="/news" className="text-sm font-medium hover:text-primary transition-colors">
-                Actualités Mondiales
+              <Link href="/news" className="inline-block">
+                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
+                  Actualités Mondiales
+                </Button>
               </Link>
-              <Link href="/phone" className="text-sm font-medium hover:text-primary transition-colors">
-                Bien-être Numérique
+              <Link href="/phone" className="inline-block">
+                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
+                  Bien-être Numérique
+                </Button>
               </Link>
-              <Link href="/robots" className="text-sm font-medium hover:text-primary transition-colors">
-                Technologie dans les Soins de Santé
+              <Link href="/robots" className="inline-block">
+                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
+                  Technologie dans les Soins de Santé
+                </Button>
               </Link>
-              <Button variant="default">Rejoignez-nous</Button>
+              <Link href="/join" className="inline-block">
+                <Button variant="default">Rejoignez-nous</Button>
+              </Link>
             </nav>
             <Button variant="destructive" size="icon" className="md:hidden">
               <Menu className="h-6 w-6" />
@@ -65,7 +77,7 @@ export default function RootLayout({
 
         <main className="container mx-auto py-8 px-12">{children}</main>
 
-        <footer className="border-t bg-muted/50">
+        <footer className="border-t bg-muted/50 px-8">
           <div className="container flex flex-col gap-4 py-10 md:flex-row md:items-center md:justify-between">
             <p className="text-sm text-muted-foreground">
               © 2024 Parti du Futur Progressif. Tous droits réservés.

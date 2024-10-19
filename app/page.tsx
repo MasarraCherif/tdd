@@ -1,88 +1,103 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Navbar sans boutons */}
+      <nav className="bg-gray-800 p-4">
+        <div className="container mx-auto flex justify-around">
+        
+        </div>
+      </nav>
+
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gray-100">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] relative">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Unis pour un avenir meilleur
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl">
+                    OSER AUJOURD'HUI , REUSSIRE DEMAIN
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl">
                     Notre ambition est une politique ambitieuse pour la prospérité de la France. Ensemble, bâtissons un pays meilleur pour tous.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button className="color-red-500">Découvrez notre vision</Button>
+                  <span className="bg-red-500 text-white p-2 rounded">Découvrez notre vision</span>
                 </div>
               </div>
+              <div>
+                <Image
+                  src="/assests/police.png" // Correct path to the image
+                  alt="Police"
+                  width={500}
+                  height={500}
+                  className="rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+            <div className="flex justify-center my-8">
               <Image
-                alt="Hero Image"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                height="550"
-                src="https://cdn.cmsfly.com/67125dd3666ef20012e521ef/images/photo1616891169764e028f01a9d33-a_abi.jpeg"
-                width="550"
+                src="/assests/tn.png" // Path to the new image
+                alt="Tunisie"
+                width={200}
+                height={200}
+                className="rounded-full shadow-lg"
               />
             </div>
           </div>
         </section>
+
         <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+          <div className="container flex justify-between px-4 md:px-6">
+            <div className="grid gap-6 lg:grid-cols-2">
               <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Vers un avenir plus vert</h2>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl">
-                    Ensemble, nous pouvons créer un avenir plus durable. Nos politiques environnementales visent à protéger
-                    notre planète pour les générations futures.
-                  </p>
-                </div>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Image
-                  alt="Nature"
-                  className="aspect-square overflow-hidden rounded-xl object-cover object-center sm:aspect-[4/5]"
-                  height="300"
-                  src="https://cdn.cmsfly.com/67125dd3666ef20012e521ef/images/photo1474376962954d8a681cc53b2-XTZFf.jpeg"
-                  width="300"
-                />
-                <Image
-                  alt="Architecture"
-                  className="aspect-square overflow-hidden rounded-xl object-cover object-center sm:aspect-[4/5]"
-                  height="300"
-                  src="https://cdn.cmsfly.com/67125dd3666ef20012e521ef/images/photo16982226546715267e0847e20-COE6P.jpeg"
-                  width="300"
-                />
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Vers un avenir plus vert</h2>
+                <p className="max-w-[600px] text-gray-500 md:text-xl">
+                  Ensemble, nous pouvons créer un avenir plus durable. Nos politiques environnementales visent à protéger notre planète pour les générations futures.
+                </p>
               </div>
             </div>
+            <Image
+                  src="/assests/avenir.png" // Path to the new image
+                  alt="Avenir"
+                  width={300}
+                  height={300}
+                  className="rounded-md"
+                />
+
           </div>
         </section>
+
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col justify-center space-y-4">
-              <div className="space-y-2">
+              <div className="space-y-2 flex items-center">
+                <Image
+                  src="/assests/logo.png" // Path to the logo
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="rounded-lg"
+                />
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Notre vision</h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl">
-                  Notre vision est celle d'une France forte, inclusive et innovante. Nous nous engageons à relever les défis
-                  d'aujourd'hui et de demain, en mettant l'accent sur le développement durable, l'éducation, la santé et
-                  l'économie.
-                </p>
               </div>
+              <p className="max-w-[900px] text-gray-500 md:text-xl">
+                Notre vision est celle d'une TUNISIE forte, inclusive et innovante. Nous nous engageons à relever les défis d'aujourd'hui et de demain, en mettant l'accent sur le développement durable, l'éducation, la santé et l'économie.
+              </p>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button variant="outline">En savoir plus</Button>
+                <span className="bg-red-500 text-white p-2 rounded">En savoir plus</span>
               </div>
             </div>
           </div>
         </section>
+
         <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
           <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter mb-6">Nos engagements</h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <Card>
                 <CardContent className="p-4">

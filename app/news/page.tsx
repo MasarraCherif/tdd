@@ -1,20 +1,22 @@
-"use client"
-import { useState, useEffect } from "react"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { MapPin, MessageCircle, Share2, ThumbsUp, Twitter } from "lucide-react"
+"use client";
+
+import { useState, useEffect } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MapPin, MessageCircle, Share2, ThumbsUp, Twitter } from "lucide-react";
+import Image from "next/image";
 
 export default function LiveNewsFeed() {
   const [tickerNews, setTickerNews] = useState<string[]>([
     "À la une : Négociations de cessez-le-feu en cours",
     "Le Conseil de sécurité de l'ONU tiendra une réunion d'urgence",
     "L'aide humanitaire atteint les zones touchées",
-  ])
+  ]);
   const [latestHeadlines, setLatestHeadlines] = useState([
     {
       id: 1,
@@ -34,35 +36,54 @@ export default function LiveNewsFeed() {
       excerpt: "Nos correspondants rapportent sur les derniers développements et l'impact sur les civils.",
       timestamp: "Il y a 2 heures",
     },
-  ])
+  ]);
   const [comments, setComments] = useState([
     { id: 1, user: "Alex", text: "En espérant une résolution pacifique bientôt.", likes: 15 },
     { id: 2, user: "Sam", text: "Mes pensées vont à ceux qui sont touchés.", likes: 8 },
     { id: 3, user: "Jordan", text: "La situation humanitaire est préoccupante.", likes: 12 },
-  ])
+  ]);
 
   useEffect(() => {
     const tickerInterval = setInterval(() => {
-      setTickerNews((prev) => [...prev.slice(1), prev[0]])
-    }, 5000)
+      setTickerNews((prev) => [...prev.slice(1), prev[0]]);
+    }, 5000);
 
-    return () => clearInterval(tickerInterval)
-  }, [])
+    return () => clearInterval(tickerInterval);
+  }, []);
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Mises à jour en direct sur le conflit</h1>
+      <header className="flex justify-center mb-4">
+        <Image
+          src="/assests/logo.png" // Chemin vers le logo
+          alt="Logo"
+          width={150} // Largeur souhaitée
+          height={50} // Hauteur souhaitée
+        />
+      </header>
+
+      {/* Drapeau Tunisien */}
+      <div className="flex justify-center mb-4">
+        <Image
+          src="/assests/tn.png" // Chemin vers le drapeau
+          alt="Drapeau Tunisien"
+          width={100} // Ajustez la largeur si nécessaire
+          height={70} // Ajustez la hauteur si nécessaire
+        />
+      </div>
+
+      <h1 className="text-3xl font-bold text-center mb-4 text-white">Mises à jour en direct sur le conflit</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-2 space-y-4">
-          <Card>
+          <Card className="shadow-lg rounded-md">
             <CardHeader className="pb-2">
-              <CardTitle>Actualités de dernière minute</CardTitle>
+              <CardTitle className="text-lg font-semibold">Actualités de dernière minute</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="bg-muted p-2 rounded-md overflow-hidden">
                 <div className="animate-marquee whitespace-nowrap">
                   {tickerNews.map((news, index) => (
-                    <span key={index} className="mx-4 text-sm font-medium">
+                    <span key={index} className="mx-4 text-sm font-medium text-red-600">
                       {news}
                     </span>
                   ))}
@@ -73,7 +94,7 @@ export default function LiveNewsFeed() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Derniers titres</CardTitle>
+              <CardTitle className="text-lg font-semibold">Derniers titres</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -95,21 +116,24 @@ export default function LiveNewsFeed() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Carte des zones de conflit</CardTitle>
+              <CardTitle className="text-lg font-semibold">Carte des zones de conflit</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="aspect-video bg-muted rounded-md flex items-center justify-center">
-                <MapPin className="w-12 h-12 text-muted-foreground" />
-                <span className="ml-2 text-muted-foreground">Espace réservé pour la carte interactive</span>
+                <Image
+                  src="/assests/card.png"
+                  alt="Carte des zones de conflit"
+                  width={500}
+                  height={300}
+                  className="rounded-md"
+                />
               </div>
             </CardContent>
           </Card>
-        </div>
 
-        <div className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Mises à jour en direct</CardTitle>
+              <CardTitle className="text-lg font-semibold">Mises à jour en direct</CardTitle>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="twitter" className="w-full">
@@ -167,44 +191,26 @@ export default function LiveNewsFeed() {
                 </TabsContent>
               </Tabs>
               <div className="mt-4 flex space-x-2">
-                <Input placeholder="Ajouter un commentaire..." />
-                <Button>Publier</Button>
+                <Input placeholder="Ajouter un commentaire..." className="flex-grow" />
+                <Button variant="outline">Publier</Button>
               </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Évolutions clés</CardTitle>
+              <CardTitle className="text-lg font-semibold">Évolutions clés</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="list-disc pl-4 space-y-2">
                 <li>Négociations de cessez-le-feu en cours</li>
-                <li>Corridors humanitaires établis</li>
-                <li>Efforts d'aide internationale intensifiés</li>
+                <li>Réactions internationales croissantes</li>
+                <li>Appels à l'aide humanitaire</li>
               </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Partager ce fil d'actualités</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm">
-                  <Twitter className="w-4 h-4 mr-1" />
-                  Twitter
-                </Button>
-                <Button variant="outline" size="sm">
-                  <Share2 className="w-4 h-4 mr-1" />
-                  Partager
-                </Button>
-              </div>
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,17 +1,42 @@
-"use client"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { PhoneOff, Clock, Users, Brain, Activity } from "lucide-react"
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { PhoneOff, Clock, Users, Brain, Activity } from "lucide-react";
 
 export default function PhoneAddictionAwareness() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-green-50">
-  
-      <main className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 relative overflow-hidden">
+      <Image
+        src="/assests/smart.png"
+        alt="Smartphone"
+        layout="fill"
+        className="object-cover opacity-50"
+        priority
+      />
+      
+      <header className="flex justify-center items-center space-x-4 mb-8 relative z-10">
+        <Image src="/assests/tn.png" alt="Drapeau Tunisien" width={100} height={60} />
+        <h1 className="text-5xl font-bold text-white">L'impact des smartphones sur notre vie</h1>
+        <Image src="/assests/logo.png" alt="Logo" width={100} height={60} />
+      </header>
+      
+      <main className="container mx-auto px-4 py-8 relative z-10">
         <section className="mb-12">
-          <h2 className="text-3xl font-semibold text-center mb-8">L'impact des smartphones sur notre vie</h2>
+          <h2 className="text-3xl font-semibold text-center mb-8"></h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatCard
               icon={<Clock className="h-8 w-8 text-blue-500" />}
@@ -116,18 +141,48 @@ export default function PhoneAddictionAwareness() {
 
         <section className="text-center mb-12">
           <h2 className="text-3xl font-semibold mb-8">Prêt à relever le défi ?</h2>
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-            <PhoneOff className="mr-2 h-4 w-4" /> Commencer ma détox digitale
-          </Button>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                <PhoneOff className="mr-2 h-4 w-4" /> Commencer ma détox digitale
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Votre plan de détox digitale personnalisé</DialogTitle>
+                <DialogDescription>
+                  Félicitations pour avoir pris cette décision importante ! Voici quelques étapes pour commencer votre détox digitale :
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <span className="col-span-4">1. Définissez un objectif réaliste (par exemple, réduire votre temps d'écran de 30% cette semaine)</span>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <span className="col-span-4">2. Installez une application de suivi du temps d'écran</span>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <span className="col-span-4">3. Créez des "zones sans téléphone" chez vous</span>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <span className="col-span-4">4. Planifiez des activités alternatives (lecture, sport, méditation)</span>
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <span className="col-span-4">5. Partagez votre objectif avec un ami pour plus de motivation</span>
+                </div>
+              </div>
+              <DialogTrigger asChild>
+                <Button className="w-full">Je commence maintenant !</Button>
+              </DialogTrigger>
+            </DialogContent>
+          </Dialog>
         </section>
       </main>
-
     </div>
-  )
+  );
 }
 
-// @ts-ignore
-function StatCard({ icon, title, value, description }) {
+function StatCard({ icon, title, value, description }: { icon: React.ReactNode; title: string; value: string; description: string }) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -139,5 +194,5 @@ function StatCard({ icon, title, value, description }) {
         <p className="text-xs text-muted-foreground">{description}</p>
       </CardContent>
     </Card>
-  )
+  );
 }
