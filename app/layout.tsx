@@ -1,87 +1,39 @@
-import type { Metadata } from "next"
-import localFont from "next/font/local"
-import "./globals.css"
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
+
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
+import Navbar from "./components/Navbar"; // Import the Navbar component
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
-})
+});
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
-})
+});
 
 export const metadata: Metadata = {
   title: "Parti du Futur Progressif",
   description: "Site officiel du Parti du Futur Progressif",
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 px-8 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <div className="container flex h-16 items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Image src="https://i.imgur.com/TCTOvkr.png" alt="Logo du Parti" height={40} width={40} className="rounded-full" />
-              <Link href="/" className="text-xl font-bold">
-                TDD
-              </Link>
-            </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link href="/" className="inline-block">
-                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
-                  Accueil
-                </Button>
-              </Link>
-              <Link href="/jobs" className="inline-block">
-                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
-                  Offres d'emploi
-                </Button>
-              </Link>
-              <Link href="/news" className="inline-block">
-                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
-                  Actualités Mondiales
-                </Button>
-              </Link>
-              <Link href="/phone" className="inline-block">
-                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
-                  Bien-être Numérique
-                </Button>
-              </Link>
-              <Link href="/robots" className="inline-block">
-                <Button variant="outline" className="text-sm font-medium hover:text-primary transition-colors">
-                  Technologie dans les Soins de Santé
-                </Button>
-              </Link>
-              <Link href="/join" className="inline-block">
-                <Button variant="default">Rejoignez-nous</Button>
-              </Link>
-            </nav>
-            <Button variant="destructive" size="icon" className="md:hidden">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Basculer le menu</span>
-            </Button>
-          </div>
-        </header>
-
+        <Navbar /> {/* Use the Navbar component here */}
         <main className="container mx-auto py-8 px-12">{children}</main>
-
         <footer className="border-t bg-muted/50 px-8">
           <div className="container flex flex-col gap-4 py-10 md:flex-row md:items-center md:justify-between">
-            <p className="text-sm text-muted-foreground">
-              © 2024 Parti du Futur Progressif. Tous droits réservés.
-            </p>
+            <p className="text-sm text-muted-foreground">© 2024 Parti du Futur Progressif. Tous droits réservés.</p>
             <nav className="flex gap-4">
               <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Politique de Confidentialité
@@ -97,5 +49,5 @@ export default function RootLayout({
         </footer>
       </body>
     </html>
-  )
+  );
 }

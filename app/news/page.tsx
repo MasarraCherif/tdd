@@ -130,7 +130,7 @@ export default function LiveNewsFeed() {
               </div>
             </CardContent>
           </Card>
-
+          <div>
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-semibold">Mises à jour en direct</CardTitle>
@@ -209,6 +209,7 @@ export default function LiveNewsFeed() {
               </ul>
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
     </div>
